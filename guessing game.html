@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="guessing.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1>Number Guessing Game</h1>
+        <p>Guess a number between 1 and 100:</p>
+        <input type="number" id="guessInput" min="1" max="100">
+        <button onclick="checkGuess()">Guess</button>
+        <p id="message"></p>
+        <p>Attempt remaining: <span id="attempts">10</span></p>
+        <button onclick="resetGame()">Reset Game</button>
+    </div>
+    <script>
+        let secretNumber;
+        let attemptsLeft;
+
+    function startGame() {
+        secretNumber = Math.floor(Math.random() * 100) + 1;
+        attemptsLeft = 10;
+        document.getElementById("attempts").textContent = attemptsLeft;
+        document.getElementById("message").textContent = "";
+    }
+
+    function checkGuess() {
+        let guess = parseInt(document.getElementById("guessInput").value);
+
+        if (isNaN(guess) || guess < 1 || guess > 100) {
+            document.getElementById("message").textContent = "Please enter a valid number between 1 and 100.";
+            return;
+    }
+
+    attemptsLeft--;
+    document.getElementById("attempts").textContent = attemptsLeft;
+     
+    if (guess=== secretNumber) {
+    document.getElementById("message").textContent = `congratulations! You guessed the number ${secretNumber} correcty!`;
+    disableInput(); 
+    } else if (guess < secretNumber) {
+        document.getElementById("message").textContent = "Try a higher number.";
+    } else {
+        document.getElementById("message").textContent = "Try a lower number.";
+    }
+    
+    if (attemptsLeft === 0 && guess !== secretNumber) {
+        document.getElementById("message").textContent = `Game over! The number was ${secretNumber}.`;
+        disableInput();
+    }
+}
+
+function resetGame() {
+    document.getElementById("guessInput").value = "";
+    startGame();
+    enableInput();
+}
+
+
+function disableInput() {
+    document.getElementById("guessInput").disabled = true;
+    document.getElementsByTagName("button")[0].disabled = true;
+}
+
+
+function enableInput() {
+    document.getElementById("guessInput").disabled = false;
+    document.getElementsByTagName("button")[0].disabled = false;
+}
+
+
+
+startGame();
+
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function sumTwoNumbers() {
+            let num1 = prompt("Enter the first number:");
+            num1 = parseInt(num1, 10);
+
+            if (isNaN(num1)) {
+                alert("Invalid input. Please enter a valid number.");
+                return; 
+            }
+            let num2 = prompt("Enter the second number:");
+            num2 = parseInt(num2, 10);
+
+            if (isNaN(num2)) {
+                alert("Invalid input. Please enter a valid number.");
+                return;
+            }
+
+
+            let sum = num1 + num2;
+
+            alert("The sum of " + num1 + " and " + num2 + " is " + sum);
+        }
+
+        sumTwoNumbers();
+    </script>
+    
+</body>
+</html>
